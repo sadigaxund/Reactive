@@ -16,14 +16,10 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
 import java.awt.Cursor;
 import javax.swing.border.SoftBevelBorder;
-import javax.swing.plaf.ComboBoxUI;
-
 import Tools.CustomComboBox;
 
 import javax.swing.border.BevelBorder;
@@ -97,26 +93,27 @@ public class MainMenu extends JFrame {
 
     }
 
-    @SuppressWarnings({ "unchecked", "unused", "rawtypes" })
+    @SuppressWarnings({ "unused" })
     private void addButtons(SpringLayout springLayout) {
-	JPanel panel = new JPanel();
-	panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-	panel.setOpaque(false);
 
 	int xMargin = toInt(getSize().getWidth()) / 3;
 	int buttonW = 35;
 	int buttonH = 30;
 
+	JPanel panel = new JPanel();
+	panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+	panel.setOpaque(false);
+	int panelHeight = toInt((SCREEN_SIZE.getHeight()) - (buttonH * 5 + COMPONENT_MARGIN * 2.5) * 2) + 5;
+	springLayout.putConstraint(SpringLayout.WEST, panel, xMargin, SpringLayout.WEST, getContentPane());
+	springLayout.putConstraint(SpringLayout.SOUTH, panel, -COMPONENT_MARGIN, SpringLayout.SOUTH,
+		getContentPane());
+	springLayout.putConstraint(SpringLayout.EAST, panel, -xMargin, SpringLayout.EAST, getContentPane());
+	springLayout.putConstraint(SpringLayout.NORTH, panel, panelHeight, SpringLayout.NORTH, getContentPane());
+
+	panel.setLayout(null);
+
 	JPanel titlebar = new JPanel();
 	TITLEBAR_HEIGHT = toInt((SCREEN_SIZE.getHeight() - TITLEBAR_HEIGHT));
-
-	springLayout.putConstraint(SpringLayout.NORTH, panel,
-		toInt((SCREEN_SIZE.getHeight()) - (buttonH * 5 + COMPONENT_MARGIN * 2.5) * 2) + 5, SpringLayout.NORTH,
-		getContentPane());
-	springLayout.putConstraint(SpringLayout.WEST, panel, xMargin, SpringLayout.WEST, getContentPane());
-	springLayout.putConstraint(SpringLayout.SOUTH, panel, -COMPONENT_MARGIN, SpringLayout.SOUTH, getContentPane());
-	springLayout.putConstraint(SpringLayout.EAST, panel, -xMargin, SpringLayout.EAST, getContentPane());
-	panel.setLayout(null);
 
 	titlebar.setBorder(new CompoundBorder(new LineBorder(new Color(0, 0, 0), 0, true),
 		new MatteBorder(2, 0, 0, 0, (Color) new Color(128, 128, 128))));
@@ -168,9 +165,9 @@ public class MainMenu extends JFrame {
 	/* ===================FUCKS UP===================== */
 
 	JButton btnNewButton_1_1_1 = new JButton("START");
-	 btnNewButton_1_1_1.setBounds(10, comboBox.getY() + comboBox.getHeight() +
-	 COMPONENT_MARGIN, 344, 40);//===================FUCKS UP=====================
-//	btnNewButton_1_1_1.setBounds(10, COMPONENT_MARGIN, 344, 40);
+	btnNewButton_1_1_1.setBounds(10, comboBox.getY() + comboBox.getHeight() + COMPONENT_MARGIN, 344, 40);// ===================FUCKS
+													     // UP=====================
+	// btnNewButton_1_1_1.setBounds(10, COMPONENT_MARGIN, 344, 40);
 
 	panel.add(btnNewButton_1_1_1);
 	btnNewButton_1_1_1.setUI(new StyledButtonUI());

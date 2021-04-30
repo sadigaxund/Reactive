@@ -70,7 +70,11 @@ public class ComponentHelper {
 
 	public void mouseDragged(MouseEvent e) {
 	    Point currCoords = e.getLocationOnScreen();
-	    frame.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+	    try {
+		frame.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+	    } catch (NullPointerException ex) {
+		System.err.println("2 mouse buttons pressed at the same time: " + ex.getMessage());
+	    }
 	}
     }
 
